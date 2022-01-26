@@ -22,9 +22,7 @@ const NavigationDrawerStructure = (props) => {
       </TouchableOpacity>
     </View>
   )
-
 }
-
 function firstScreenStack({ navigation }) {
   return (
     <Stack.Navigator initialRouteName="FirstPage"
