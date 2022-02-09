@@ -8,6 +8,7 @@ import ProductScreen from './Screen/ProductScreen';
 import DetailScreen from './Screen/DetailScreen';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import MenuScreen from './Screen/MenuScreen';
+import Register from './Screen/Register';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 function HomeStack() {
@@ -31,6 +32,11 @@ function HomeStack() {
         component={ProductScreen}
         options={{title: 'สินค้า'}}
       />
+      <Stack.Screen
+        name="Register"
+        component={Register}
+        options={{title: 'ลงทำเบียน'}}
+      />
     </Stack.Navigator>
   )
 }
@@ -38,13 +44,15 @@ function ProductStack() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: '#FACF5A' },
-        headerTintColor: '#233142',
+        headerStyle: { backgroundColor: '#F754D5' },
+        headerTintColor: '#FFFF',
         headerTitleStyle: { fontWeight: 'bold' },
+        
       }}
     >
       <Stack.Screen name="Product" component={ProductScreen} options={{ title: 'สินค้า' }} />
        <Stack.Screen name="Detail" component={DetailScreen} options={{ title: 'Detail' }} />
+       <Stack.Screen name="Register" component={Register}options={{title: 'ลงทะเบียน'}}/>
     </Stack.Navigator>
   )
 }
