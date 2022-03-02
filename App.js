@@ -9,12 +9,13 @@ import DetailScreen from './Screen/DetailScreen';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import MenuScreen from './Screen/MenuScreen';
 import Register from './Screen/Register';
+import LoginScreen from './Screen/LoginScreen';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 function HomeStack() {
   return (
     <Stack.Navigator
-      initialRouteName="HomeScreen"
+      initialRouteName="HomeScreen"a
       screenOptions={{
         
         headerStyle: {backgroundColor: '#F754D5'},
@@ -36,6 +37,11 @@ function HomeStack() {
         name="Register"
         component={Register}
         options={{title: 'ลงทำเบียน'}}
+      />
+       <Stack.Screen
+        name="LoginScreen"
+        component={LoginScreen}
+        options={{title: 'เข้าสู่ระบบ'}}
       />
     </Stack.Navigator>
   )
