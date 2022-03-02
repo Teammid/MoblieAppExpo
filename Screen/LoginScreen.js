@@ -14,8 +14,14 @@ import {
 import axios from 'axios';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import HomeScreen from './HomeScreen'
+import {userStoreContext} from '../context/UserContext'
+
 
 const LoginScreen = ({navigation}) => {
+  const userStore = React.useContext(userStoreContext)
+
   return (
     <Container>
       <Content padder>
@@ -28,11 +34,28 @@ const LoginScreen = ({navigation}) => {
             //alert(JSON.stringify(values));
             try{
               const url = 'https://api.codingthailand.com/api/login';
-              
+              const res = await axios.post(url,{
+                email : values.email,
+                password : values.password
+              })
+             // alert(JSON.stringify(res.data))
+             await AsyncStorage.setItem('@token',JSON.stringify(res.data));
+             const urlProfile = 'https://api.codingthailand.com/api/profile'
+             const resProfile = await axios.get(urlProfile,{
+              headers:{
+                Authorization : 'Bearer '+res.data.access_token
+              }
+             })
+             await AsyncStorage.setItem('@profile',JSON.stringify(resProfile.data.data.user))
+             const profile = await AsyncStorage.getItem('@profile')
+             userStore.updateProfile(JSON.parse(profile))
+             alert ('เข้าระบบเเล้ว')
+            navigation.navigate('Home')
+             //alert(JSON.stringify(resProfile.data.data.user))
             } catch (error){
-              
+              alert(error.response.data.message)
             }finally{
-              setSubmitting(false);
+              setSubmitting = false;
             }
           }}>
           {({

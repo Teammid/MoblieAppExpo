@@ -14,6 +14,7 @@ import {
 import axios from 'axios';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
+import HomeScreen from './HomeScreen'
 
 const validateSchema = Yup.object().shape({
   name: Yup.string().required('กรุณาป้อนชื่อ'),
@@ -42,7 +43,7 @@ const Register = ({navigation}) => {
                 password : values.password
               })
               alert(res.data.message)
-              navigation.navigate('HomeScreen')
+              navigation.navigate('Home')
             } catch (error){
               alert(error.response.data.errors.email[0]);
             }finally{

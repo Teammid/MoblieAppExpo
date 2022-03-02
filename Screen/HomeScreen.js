@@ -6,6 +6,7 @@ import {
   HeaderButton,
   Item,
 } from 'react-navigation-header-buttons';
+import {userStoreContext} from '../context/UserContext'
 
 const IoniconsHeaderButton = props => (
   <HeaderButton IconComponent={Ionicons} iconSize={23} color='white' {...props} />
@@ -34,10 +35,20 @@ const HomeScreen = ({navigation}) => {
       ),  
     });
   }, [navigation]);
-
+  const userStore = React.useContext(userStoreContext)
   return (
     <View style={styles.container}>
       <Ionicons name="home-outline" size={30} color="#32C6E6" />
+
+      {
+          userStore.profile &&
+          <>
+          <Text>Welcome:{userStore.profile.name}</Text>
+          <Text>email:{userStore.profile.email}  </Text>
+
+          </>
+      }
+
       <Text>หน้าหลัก</Text>
       <Button
         title="Go to About"
