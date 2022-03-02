@@ -15,36 +15,22 @@ import axios from 'axios';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 
-const validateSchema = Yup.object().shape({
-  name: Yup.string().required('กรุณาป้อนชื่อ'),
-  email: Yup.string().email('รูปแบบไมู่กต้อง').required('กรอกอีกเมลใหม่'),
-  password: Yup.string().min(10, 'รหัสผ่าน').required('ใส่รหัสผ่าน'),
-});
-
-const Register = ({navigation}) => {
+const LoginScreen = ({navigation}) => {
   return (
     <Container>
       <Content padder>
         <Formik
           initialValues={{
-            name: '',
             email: '',
             password: '',
           }}
-          validationSchema={validateSchema}
           onSubmit={async(values,{setSubmitting}) => {
             //alert(JSON.stringify(values));
             try{
-              const url = 'https://api.codingthailand.com/api/register';
-              const res = await axios.post(url,{
-                name :values.name,
-                email : values.email,
-                password : values.password
-              })
-              alert(res.data.message)
-              navigation.navigate('HomeScreen')
+              const url = 'https://api.codingthailand.com/api/login';
+              
             } catch (error){
-              alert(error.response.data.errors.email[0]);
+              
             }finally{
               setSubmitting(false);
             }
@@ -59,22 +45,7 @@ const Register = ({navigation}) => {
             isSubmitting,
           }) => (
             <Form>
-              <Item
-                fixedLabel
-                error={errors.name && touched.name ? true : false}>
-                <Label>Name</Label>
-                <Input
-                  value={values.name}
-                  onChangeText={handleChange('name')}
-                  onBlur={handleBlur('name')}
-                />
-                {errors.name && touched.name && <Icon name="close-circle" />}
-              </Item>
-              {errors.name && touched.name && (
-                <Item>
-                  <Label style={{ color: 'red' }}>{errors.name}</Label>
-                </Item>
-              )}
+              
               <Item
                 fixedLabel
                 error={errors.email && touched.email ? true : false}>
@@ -128,4 +99,4 @@ const Register = ({navigation}) => {
     </Container>
   );
 };
-export default Register;
+export default LoginScreen;
