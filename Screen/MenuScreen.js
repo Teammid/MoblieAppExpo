@@ -22,7 +22,7 @@ const MenuScreen = ({navigation}) => {
 
           <ListItem icon
             style = {{marginBottom:10, marginTop:10}}
-            onPress={() => navigation.navigate('HomeStack')}
+            onPress={() => navigation.navigate('Home')}
           >
             <Left>
               <Button style={{ backgroundColor: "#FF9501" }}>
@@ -39,7 +39,7 @@ const MenuScreen = ({navigation}) => {
 
           <ListItem icon
             style = {{marginBottom:10, marginTop:10}}
-            onPress={() => navigation.navigate('ProductStack')}
+            onPress={() => navigation.navigate('Product')}
           >
             <Left>
               <Button style={{ backgroundColor: "#007AFF" }}>
@@ -48,6 +48,23 @@ const MenuScreen = ({navigation}) => {
             </Left>
             <Body>
               <Text>สินค้า</Text>
+            </Body>
+            <Right>
+              <Icon active name="arrow-forward" />
+            </Right>
+          </ListItem>
+
+          <ListItem icon
+            style = {{marginBottom:10, marginTop:10}}
+            onPress={() => navigation.navigate('LoginScreen')}
+          >
+            <Left>
+              <Button style={{ backgroundColor: "#007AFF" }}>
+                <Icon active name="log-in" />
+              </Button>
+            </Left>
+            <Body>
+              <Text>เข้าสู่ระบบ</Text>
             </Body>
             <Right>
               <Icon active name="arrow-forward" />
