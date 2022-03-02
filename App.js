@@ -10,6 +10,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import MenuScreen from './Screen/MenuScreen';
 import Register from './Screen/Register';
 import LoginScreen from './Screen/LoginScreen';
+import UserStoreProvider from './context/UserContext'
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 function HomeStack() {
@@ -64,7 +65,8 @@ function ProductStack() {
 }
 const App = () => {
   return (
-    <NavigationContainer>
+    <UserStoreProvider>
+      <NavigationContainer>
       <Drawer.Navigator
         initialRouteName="HomeStack"
         drawerPosition="left"
@@ -74,6 +76,7 @@ const App = () => {
         <Drawer.Screen name='Product' component ={ProductStack}/>
       </Drawer.Navigator>
     </NavigationContainer>
+    </UserStoreProvider>
   )
 }
 
